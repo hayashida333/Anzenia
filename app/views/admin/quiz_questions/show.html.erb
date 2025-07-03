@@ -1,0 +1,13 @@
+<h1><%= @quiz_question.question %></h1>
+
+<%= form_with url: answer_quiz_question_path(@quiz_question), method: :post, local: true do %>
+  <div>
+    <%= radio_button_tag :selected_option, 1 %> <%= @quiz_question.option1 %><br>
+    <%= radio_button_tag :selected_option, 2 %> <%= @quiz_question.option2 %><br>
+    <%= radio_button_tag :selected_option, 3 %> <%= @quiz_question.option3 %><br>
+    <%= radio_button_tag :selected_option, 4 %> <%= @quiz_question.option4 %><br>
+  </div>
+
+  <%= submit_tag "回答する", class: "btn btn-primary" %>
+  <%= link_to '戻る', '#', onclick: 'history.back(); return false;', class: 'btn btn-secondary' %>
+<% end %>

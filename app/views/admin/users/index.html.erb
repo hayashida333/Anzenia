@@ -35,34 +35,33 @@
   </table>
 
   <h3>クイズ結果一覧（最新5件）</h3>
-  <% if defined?(@quiz_results) && @quiz_results.present? %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>問題</th>
-          <th>結果</th>
-          <th>日時</th>
-          <th>ユーザー名</th> 
+<% if defined?(@quiz_results) && @quiz_results.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>問題</th>
+        <th>結果</th>
+        <th>日時</th>
+        <th>ユーザー名</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <% @quiz_results.each_with_index do |result, index| %>
+        <tr class="<%= 'table-danger' if index == 0 %>">
+          <td><%= truncate(result.quiz_question.question, length: 30) %></td>
+          <td>
+            <% if result.correct %>
+              <span class="text-success">正解</span>
+            <% else %>
+              <span class="text-danger">不正解</span>
+            <% end %>
+          </td>
+          <td><%= result.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= result.user.last_name %> <%= result.user.first_name %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% @quiz_results.each do |result| %>
-          <tr>
-            <td><%= truncate(result.quiz_question.question, length: 30) %></td>
-            <td>
-              <% if result.correct %>
-                <span class="text-success">正解</span>
-              <% else %>
-                <span class="text-danger">不正解</span>
-              <% end %>
-            </td>
-            <td><%= result.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-            <td><%= result.user.last_name %> <%= result.user.first_name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>クイズ結果の表示情報がありません。</p>
-  <% end %>
-</div>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>クイズ結果の表示情報がありません。</p>
+<% end %>

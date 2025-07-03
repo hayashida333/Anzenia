@@ -19,4 +19,5 @@
 
 <div class="d-flex gap-2 mt-3">
   <%= link_to "投稿一覧に戻る", videos_path, class: "btn btn-secondary" %>
+  <%= button_to "投稿を削除", @video, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 </div>

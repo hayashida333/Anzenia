@@ -1,0 +1,12 @@
+<% content_for :title, "投稿の編集" %>
+
+<h1>投稿の編集</h1>
+
+<%= render "form", video: @video %>
+
+<br>
+
+<div>
+  <%= link_to "この投稿を表示", @video %> |
+  <%= link_to "投稿一覧に戻る", videos_path %>
+</div>
