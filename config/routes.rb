@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
   namespace :admin do
-    # 不要なgetは削除してOK（↓これ）
-    # get "posts/index"
-    # get "posts/show"
-    # get "posts/new"
-    # get "posts/edit"
-
     resources :users
     resources :posts
     resources :videos
@@ -19,7 +13,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :videos
 
-  resources :quiz_questions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  # 一般ユーザー用（削除・作成・編集不可）
+  resources :quiz_questions, only: [:index, :show] do
     post 'answer', on: :member
   end
 

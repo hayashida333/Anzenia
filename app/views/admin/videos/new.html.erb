@@ -1,0 +1,11 @@
+<% content_for :title, "新規投稿" %>
+
+<h1>新規投稿</h1>
+
+<%= render "form", video: @video %>
+
+<br>
+
+<div>
+  <%= link_to "投稿一覧に戻る", admin_videos_path %>
+</div>

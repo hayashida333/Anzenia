@@ -22,7 +22,7 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       if @video.save
-        format.html { redirect_to @video, notice: "投稿が正常に作成されました。" }
+        format.html { redirect_to @video, notice: "に作成されました。" }
         format.json { render :show, status: :created, location: @video }
       else
         format.html { render :new, status: :unprocessable_entity }

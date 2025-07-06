@@ -1,4 +1,4 @@
-<%= form_with(model: @video) do |form| %>
+<%= form_with(model: @video, url: admin_videos_path, local: true) do |form| %>
   <% if @video.errors.any? %>
     <div class="alert alert-danger">
       <h4><%= pluralize(@video.errors.count, "件のエラー") %>があります:</h4>
@@ -11,12 +11,12 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :title, class: "form-label" %>
+    <%= form.label :title, "タイトル", class: "form-label" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :description, class: "form-label" %>
+    <%= form.label :description, "説明", class: "form-label" %>
     <%= form.text_area :description, class: "form-control" %>
   </div>
 

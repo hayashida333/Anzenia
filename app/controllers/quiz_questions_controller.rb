@@ -1,10 +1,24 @@
+
 class QuizQuestionsController < ApplicationController
+  before_action :set_quiz_question, only: [:show]
   before_action :authenticate_user!, only: [:answer]
-  before_action :set_quiz_question, only: %i[show answer edit update destroy]
 
   def index
     @quiz_questions = QuizQuestion.all
   end
+
+  def new
+    @quiz_question = QuizQuestion.new
+  end
+
+  def create
+    @quiz_question = QuizQuestion.new(quiz_question_params)
+    if @quiz_question.save
+      redirect_to admin_quiz_questions_path, notice: "クイズを作成しました"
+      else
+        render :new
+      end
+    end
 
   def show
   end
@@ -29,33 +43,9 @@ class QuizQuestionsController < ApplicationController
     redirect_to quiz_question_path(@quiz_question)
   end
 
-  def new
-    @quiz_question = QuizQuestion.new
-  end
-
-  def create
-    @quiz_question = QuizQuestion.new(quiz_question_params)
-    if @quiz_question.save
-      redirect_to @quiz_question, notice: "クイズを作成しました"
-    else
-      render :new
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @quiz_question.update(quiz_question_params)
-      redirect_to @quiz_question, notice: '更新に成功しました'
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @quiz_question.destroy
-    redirect_to quiz_questions_path, notice: "削除しました"
+    redirect_to quiz_questions_path, notice: "クイズを削除しました"
   end
 
   private

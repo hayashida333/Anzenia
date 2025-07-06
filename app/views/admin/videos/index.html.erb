@@ -1,34 +1,36 @@
-<h3 class="mb-4">動画一覧</h3>
+<h3 class="mb-4">動画一覧（管理者）</h3>
 
-<!-- 一覧ボタン（記事・動画・クイズ） -->
-<div class="mb-4">
-  <div class="d-flex gap-2">
-    <%= button_to "記事一覧", posts_path, method: :get, class: "btn btn-outline-primary" %>
-    <%= button_to "動画一覧", videos_path, method: :get, class: "btn btn-success" %>
-    <%= button_to "クイズ一覧", quiz_questions_path, method: :get, class: "btn btn-outline-warning" %>
-  </div>
+<!-- アクションボタン -->
+<div class="mb-3 d-flex gap-2">
+  <%= link_to "新規動画登録", new_admin_video_path, class: "btn btn-primary" %>
+  <%= link_to "戻る", admin_users_path, class: "btn btn-secondary" %>
 </div>
 
-<!-- アクションボタン（新規登録・戻る） -->
-<div class="mb-4">
-  <div class="d-flex gap-2">
-    <%= link_to "新規動画登録", new_video_path, class: "btn btn-primary" %>
-    <%= link_to "戻る", admin_users_path, class: "btn btn-secondary" %>
-  </div>
-</div>
-
-<!-- 動画カード一覧 -->
-<div class="row">
-  <% @videos.each do |video| %>
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <iframe class="card-img-top" width="100%" height="200" src="https://www.youtube.com/embed/<%= video.youtube_id %>" frameborder="0" allowfullscreen></iframe>
-        <div class="card-body">
-          <h5 class="card-title"><%= video.title %></h5>
-          <p class="card-text"><%= truncate(video.description, length: 80) %></p>
-          <%= link_to "詳細を見る", video_path(video), class: "btn btn-outline-primary btn-sm" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<table class="table table-striped align-middle">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>動画</th>
+      <th>タイトル</th>
+      <th>説明</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.id %></td>
+        <td style="width: 300px;">
+          <iframe width="100%" height="150" src="https://www.youtube.com/embed/<%= video.youtube_id %>" frameborder="0" allowfullscreen></iframe>
+        </td>
+        <td><%= video.title %></td>
+        <td><%= truncate(video.description, length: 60) %></td>
+        <td class="text-nowrap">
+          <%= link_to "詳細", admin_video_path(video), class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to "編集", edit_admin_video_path(video), class: "btn btn-sm btn-warning" %>
+          <%= link_to "削除", admin_video_path(video), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

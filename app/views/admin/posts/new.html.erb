@@ -1,2 +1,12 @@
-<h1>Admin::Posts#new</h1>
-<p>Find me in app/views/admin/posts/new.html.erb</p>
+<% content_for :title, "New post" %>
+
+<h1>投稿画面</h1>
+
+<%= render "form", post: @post %>
+
+<br>
+
+<div>
+  <%= link_to "記事一覧に戻る", posts_path %>
+  <%= link_to "記事一覧に戻る", admin_posts_path, class: "btn btn-success" %>
+</div>
