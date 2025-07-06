@@ -2,11 +2,10 @@
 
 <h1>投稿画面</h1>
 
-<%= render "form", post: @post %>
-
-<br>
+<%= form_with(model: @post, url: admin_posts_path, local: true) do |form| %>
+  <%= render "form", form: form %>
+<% end %>
 
 <div>
-  <%= link_to "記事一覧に戻る", posts_path %>
   <%= link_to "記事一覧に戻る", admin_posts_path, class: "btn btn-success" %>
 </div>

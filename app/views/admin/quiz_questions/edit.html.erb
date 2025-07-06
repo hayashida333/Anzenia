@@ -1,0 +1,51 @@
+<% content_for :title, "クイズの編集" %>
+
+<h1>クイズの編集</h1>
+
+<%= form_with(model: [:admin, @quiz_question], local: true) do |form| %>
+  <% if @quiz_question.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@quiz_question.errors.count, "件のエラー") %>があります:</h4>
+      <ul>
+        <% @quiz_question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :question, "クイズ内容", class: "form-label" %>
+    <%= form.text_area :question, class: "form-control", rows: 5 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :option1, nil, class: "form-label" %>
+    <%= form.text_field :option1, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :option2, nil, class: "form-label" %>
+    <%= form.text_field :option2, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :option3, nil, class: "form-label" %>
+    <%= form.text_field :option3, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :option4, nil, class: "form-label" %>
+    <%= form.text_field :option4, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+  <%= form.label :correct, "正解（1/2/3/4）", class: "form-label" %>
+  <%= form.select :correct, options_for_select([1, 2, 3, 4], @quiz_question.correct), {}, class: "form-select" %>
+</div>
+
+  <%= form.submit "更新する", class: "btn btn-primary" %>
+<% end %>
+
+<br>
+<%= link_to "戻る", admin_quiz_questions_path, class: "btn btn-secondary" %>
