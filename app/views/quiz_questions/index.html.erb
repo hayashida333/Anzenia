@@ -10,13 +10,35 @@
 
 <h2>クイズには何度でも挑戦できますが、1回目の回答が理解度として報告されます。</h2>
 
-  <% if @quiz_questions.present? %>
-    <% @quiz_questions.each do |quiz_question| %>
-      <li>
-        <%= link_to quiz_question.question, quiz_question_path(quiz_question) %>
-      </li>
-    <% end %>
-  <% else %>
-    <li>クイズはまだ登録されていません。</li>
-  <% end %>
-</ul>
+<% if @quiz_questions.present? %>
+  <table class="table table-striped table-bordered align-middle mt-3">
+    <thead>
+      <tr>
+        <th style="width: 50px;">ID</th>
+        <th>クイズ</th>
+        <th style="width: 200px;">リクエスト</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quiz_questions.each do |quiz_question| %>
+        <tr>
+          <td><%= quiz_question.id %></td>
+          <td>
+            <%= link_to quiz_question.question, quiz_question_path(quiz_question) %>
+          </td>
+          <td>
+            <% if quiz_question.requested_user.present? %>
+              <span class="text-success fw-bold"><%= quiz_question.requested_user.full_name %></span>
+            <% else %>
+              <span class="text-muted">未設定</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info">クイズはまだ登録されていません。</div>
+<% end %>
+
+<%= paginate @quiz_questions %>

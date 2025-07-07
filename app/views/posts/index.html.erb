@@ -1,5 +1,5 @@
 <h1>記事一覧</h1>
-  <div class="d-flex gap-2 mb-4">
+<div class="d-flex gap-2 mb-4">
   <%= button_to "記事一覧", posts_path, method: :get, class: "btn btn-primary" %>
   <%= button_to "動画一覧", videos_path, method: :get, class: "btn btn-outline-success" %>
   <%= button_to "クイズ一覧", quiz_questions_path, method: :get, class: "btn btn-outline-warning" %>
@@ -20,4 +20,9 @@
       <% end %>
     </div>
   <% end %>
+</div>
+
+<!-- ページネーションリンク -->
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @posts %>
 </div>

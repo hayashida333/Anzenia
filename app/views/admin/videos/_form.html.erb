@@ -1,29 +1,27 @@
-<%= form_with(model: @video, local: true) do |form| %>
-  <% if @video.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= pluralize(@video.errors.count, "件のエラー") %>があります:</h4>
-      <ul>
-        <% @video.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <div class="mb-3">
-    <%= form.label :title, "タイトル" %>
-    <%= form.text_field :title, class: "form-control" %>
+<% if form.object.errors.any? %>
+  <div class="alert alert-danger">
+    <h4><%= pluralize(form.object.errors.count, "件のエラー") %>があります:</h4>
+    <ul>
+      <% form.object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
-
-  <div class="mb-3">
-    <%= form.label :description, "説明" %>
-    <%= form.text_area :description, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :youtube_url, "YouTube URL" %>
-    <%= form.text_field :youtube_url, class: "form-control" %>
-  </div>
-
-  <%= form.submit "投稿する", class: "btn btn-primary" %>
 <% end %>
+
+<div class="mb-3">
+  <%= form.label :title, "タイトル" %>
+  <%= form.text_field :title, class: "form-control" %>
+</div>
+
+<div class="mb-3">
+  <%= form.label :description, "説明" %>
+  <%= form.text_area :description, class: "form-control" %>
+</div>
+
+<div class="mb-3">
+  <%= form.label :youtube_url, "YouTube URL" %>
+  <%= form.text_field :youtube_url, class: "form-control" %>
+</div>
+
+<%= form.submit "投稿する", class: "btn btn-primary" %>

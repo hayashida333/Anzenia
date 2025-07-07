@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get "quiz_results/index"
     resources :users
     resources :posts
     resources :videos
@@ -17,6 +18,11 @@ Rails.application.routes.draw do
   resources :quiz_questions, only: [:index, :show] do
     post 'answer', on: :member
   end
+
+  namespace :admin do
+    resources :quiz_results, only: [:index]
+  end
+
 
   resources :users, only: [:index, :show]
 

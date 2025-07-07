@@ -1,14 +1,12 @@
-
 class QuizQuestionsController < ApplicationController
   before_action :set_quiz_question, only: [:show]
   before_action :authenticate_user!, only: [:answer]
 
   def index
-    @quiz_questions = QuizQuestion.all
+    @quiz_questions = QuizQuestion.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
-    @quiz_question = QuizQuestion.new
   end
 
   def create

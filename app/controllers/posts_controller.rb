@@ -1,15 +1,11 @@
 class PostsController < ApplicationController
-  # 認証は不要なら削除 or 必要なら追加
-
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(9) # 1ページに9件表示（3列×3行想定）
   end
 
   # GET /posts/:id
   def show
     @post = Post.find(params[:id])
   end
-
-  # new, create, edit, update, destroy は削除（使わない場合）
 end

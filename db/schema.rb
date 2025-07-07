@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_01_231546) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_07_134155) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -29,6 +29,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_01_231546) do
     t.integer "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "requested_user_id"
+    t.index ["requested_user_id"], name: "index_quiz_questions_on_requested_user_id"
   end
 
   create_table "quiz_results", force: :cascade do |t|

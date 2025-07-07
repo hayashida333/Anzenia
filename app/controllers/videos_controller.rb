@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = Video.all
+    @videos = Video.order(created_at: :desc).page(params[:page]).per(9) # 1ページ6件表示など
     @quiz_questions = QuizQuestion.all
   end
 

@@ -1,9 +1,9 @@
 module Admin
   class QuizQuestionsController < ApplicationController
     before_action :set_quiz_question, only: %i[show edit update destroy answer]
-
+    before_action :set_users, only: %i[new edit create update]
     def index
-      @quiz_questions = QuizQuestion.all
+          @quiz_questions = QuizQuestion.includes(:requested_user).order(created_at: :desc).page(params[:page]).per(10)
     end
 
     def show
@@ -31,6 +31,7 @@ module Admin
 
     def new
       @quiz_question = QuizQuestion.new
+      @users = User.all.order(:last_name, :first_name)
     end
 
     def create
@@ -44,15 +45,18 @@ module Admin
 
     def edit
       @quiz_question = QuizQuestion.find(params[:id])
+      @users = User.all.order(:last_name, :first_name)
     end
 
     def update
-      if @quiz_question.update(quiz_question_params)
-        redirect_to admin_quiz_question_path(@quiz_question), notice: '更新に成功しました'
-      else
-        render :edit
-      end
-    end
+  @quiz_question = QuizQuestion.find(params[:id])
+  Rails.logger.info("quiz_question_params: #{quiz_question_params.inspect}")
+  if @quiz_question.update(quiz_question_params)
+    redirect_to admin_quiz_questions_path, notice: "クイズを更新しました"
+  else
+    render :edit
+  end
+end
 
     def destroy
       @quiz_question.destroy
@@ -61,12 +65,24 @@ module Admin
 
     private
 
+    def set_users
+      @users = User.order(:last_name, :first_name)
+    end
+
     def set_quiz_question
       @quiz_question = QuizQuestion.find(params[:id])
     end
 
-    def quiz_question_params
-      params.require(:quiz_question).permit(:question, :option1, :option2, :option3, :option4, :correct)
-    end
+   def quiz_question_params
+  params.require(:quiz_question).permit(
+    :question,
+    :option1,
+    :option2,
+    :option3,
+    :option4,
+    :correct,
+    :requested_user_id
+  )
+end
   end
 end

@@ -63,3 +63,4 @@ gem 'rest-client', '~> 2.1'
 gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 gem "sassc-rails"
+gem 'kaminari'

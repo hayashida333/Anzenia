@@ -15,6 +15,11 @@
   <% end %>
 
   <div class="mb-3">
+    <%= form.label :requested_user_id, "回答をお願いする従業員", class: "form-label" %>
+    <%= form.collection_select :requested_user_id, @users, :id, :full_name, { prompt: "従業員を選択してください" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :question, "クイズ内容", class: "form-label" %>
     <%= form.text_area :question, class: "form-control", rows: 5 %>
   </div>
@@ -40,9 +45,9 @@
   </div>
 
   <div class="mb-3">
-  <%= form.label :correct, "正解（1/2/3/4）", class: "form-label" %>
-  <%= form.select :correct, options_for_select([1, 2, 3, 4], @quiz_question.correct), {}, class: "form-select" %>
-</div>
+    <%= form.label :correct, "正解（1/2/3/4）", class: "form-label" %>
+    <%= form.select :correct, options_for_select([1, 2, 3, 4], @quiz_question.correct), {}, class: "form-select" %>
+  </div>
 
   <%= form.submit "更新する", class: "btn btn-primary" %>
 <% end %>
