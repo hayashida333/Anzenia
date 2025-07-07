@@ -1,6 +1,6 @@
 class QuizQuestionsController < ApplicationController
-  before_action :set_quiz_question, only: [:show]
-  before_action :authenticate_user!, only: [:answer]
+  before_action :set_quiz_question, only: [ :show ]
+  before_action :authenticate_user!, only: [ :answer ]
 
   def index
     @quiz_questions = QuizQuestion.order(created_at: :desc).page(params[:page]).per(10)
@@ -13,9 +13,9 @@ class QuizQuestionsController < ApplicationController
     @quiz_question = QuizQuestion.new(quiz_question_params)
     if @quiz_question.save
       redirect_to admin_quiz_questions_path, notice: "クイズを作成しました"
-      else
+    else
         render :new
-      end
+    end
     end
 
   def show

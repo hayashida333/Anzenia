@@ -23,7 +23,7 @@ gem "jbuilder"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-#gem "bcrypt", "~> 3.1.7"
+# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -58,9 +58,9 @@ end
 gem "carrierwave", "~> 2.2.3"
 gem "mini_magick", "~> 4.11.0"
 gem "devise", "4.9.4"
-gem 'google-api-client', '~> 0.53'
-gem 'rest-client', '~> 2.1'
-gem 'bootstrap', '~> 5.3.0'
-gem 'jquery-rails'
+gem "google-api-client", "~> 0.53"
+gem "rest-client", "~> 2.1"
+gem "bootstrap", "~> 5.3.0"
+gem "jquery-rails"
 gem "sassc-rails"
-gem 'kaminari'
+gem "kaminari"

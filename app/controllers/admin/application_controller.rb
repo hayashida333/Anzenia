@@ -1,5 +1,5 @@
 module Admin
   class ApplicationController < ActionController::Base
-    layout 'admin'
+    layout "admin"
   end
 end

@@ -15,16 +15,16 @@ Rails.application.routes.draw do
   resources :videos
 
   # 一般ユーザー用（削除・作成・編集不可）
-  resources :quiz_questions, only: [:index, :show] do
-    post 'answer', on: :member
+  resources :quiz_questions, only: [ :index, :show ] do
+    post "answer", on: :member
   end
 
   namespace :admin do
-    resources :quiz_results, only: [:index]
+    resources :quiz_results, only: [ :index ]
   end
 
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [ :index, :show ]
 
   # ヘルスチェック
   get "up", to: "rails/health#show", as: :rails_health_check

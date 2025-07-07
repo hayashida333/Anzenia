@@ -15,5 +15,8 @@ rails db:migrate
 ```
 
 以下をブラウザで開くことができます
-bin/rails s
-localhost:3000
+```
+bin/rails s　
+localhost:3000/admin/users （管理者用）
+localhost:3000/posts（一般用）
+```
