@@ -2,7 +2,27 @@
   <main class="flex-grow-1">
     <div class="container-fluid py-4">
       <div class="row">
+
         
+        <!-- サイドバー -->
+        <div class="col-md-3 col-lg-2 mb-4">
+          <div class="list-group">
+            <%= link_to "トップページ", root_path, class: "list-group-item list-group-item-action" %>
+            <%= link_to "記事一覧（Post）", posts_path, class: "list-group-item list-group-item-action" %>
+            <%= link_to "動画一覧（Video）", videos_path, class: "list-group-item list-group-item-action" %>
+            <%= link_to "クイズ一覧（Quiz）", quiz_questions_path, class: "list-group-item list-group-item-action" %>
+            <% if user_signed_in? %>
+              <%= link_to "管理者ページ", admin_users_path, class: "list-group-item list-group-item-action" %>
+              <%= button_to "ログアウト", destroy_user_session_path, method: :delete,
+                    class: "list-group-item list-group-item-action text-start btn btn-link p-0" %>
+            <% else %>
+              <%= link_to "ログイン", new_user_session_path, class: "list-group-item list-group-item-action" %>
+              <%= link_to "ユーザー登録", new_user_registration_path, class: "list-group-item list-group-item-action" %>
+            <% end %>
+          </div>
+        </div>
+
+
         <!-- メインコンテンツ -->
         <div class="col-md-9 col-lg-10">
           <% flash.each do |key, message| %>
