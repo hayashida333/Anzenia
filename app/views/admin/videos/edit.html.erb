@@ -6,9 +6,4 @@
   <%= render "form", form: form %>
 <% end %>
 
-<br>
-
-<div>
-  <%= link_to "この投稿を表示", admin_video_path(@video) %> 
-  <%= link_to "投稿一覧", admin_videos_path %>
-</div>
+  <%= link_to "動画一覧に戻る", video_path, class: "btn btn-secondary" %>
