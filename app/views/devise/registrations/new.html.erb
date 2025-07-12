@@ -13,10 +13,11 @@
     <%= f.text_field :last_name %>
   </div>
 
-  <div class="field">
-    <%= f.label :gender, '性別' %><br />
-    <%= f.select :gender, options_for_select(['男', '女']), {}, class: "form-control" %>
-  </div>
+<div class="field">
+  <%= f.label :gender, '性別' %><br />
+  <%= f.select :gender, options_for_select(['男性', '女性']), {}, class: "form-control" %>
+</div>
+
 
   <div class="my-4">
     <%= f.label :email, 'メールアドレス', class: "form-label" %><br />

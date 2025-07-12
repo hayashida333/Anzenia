@@ -1,6 +1,6 @@
 class QuizQuestionsController < ApplicationController
-  before_action :set_quiz_question, only: [ :show ]
-  before_action :authenticate_user!, only: [ :answer ]
+  before_action :set_quiz_question, only: [:show, :answer]  # ここに :answer を追加
+  before_action :authenticate_user!, only: [:answer]
 
   def index
     @quiz_questions = QuizQuestion.order(created_at: :desc).page(params[:page]).per(10)
