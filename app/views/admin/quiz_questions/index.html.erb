@@ -2,42 +2,42 @@
 
 <h2>クイズには何度でも挑戦できますが、1回目の回答が理解度として報告されます。</h2>
 
+<!-- アクションボタン -->
 <div class="mb-3 d-flex gap-2">
   <%= link_to '新規作成', new_admin_quiz_question_path, class: 'btn btn-primary' %>
 </div>
 
 <% if @quiz_questions.present? %>
   <table class="table table-bordered align-middle">
-  <thead>
-    <tr>
-      <th style="width: 50px;">ID</th>
-      <th>クイズ</th>
-      <th style="width: 150px;">作成日</th>
-      <th>リクエスト先</th>  <!-- ←ここに追加 -->
-      <th style="width: 200px;">操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @quiz_questions.each do |quiz| %>
+    <thead>
       <tr>
-        <td><%= quiz.id %></td>
-        <td style="white-space: normal;"><%= simple_format(quiz.question) %></td>
-        <td><%= quiz.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-        <td><%= quiz.requested_user&.full_name || "未設定" %></td> <!-- ←ここに追加 -->
-        <td class="d-flex gap-1">
-          <%= link_to "詳細", quiz_question_path(quiz), class: "btn btn-sm btn-info" %>
-          <%= link_to "編集", edit_admin_quiz_question_path(quiz), class: "btn btn-sm btn-warning" %>
-          <%= button_to "削除", admin_quiz_question_path(quiz), method: :delete,
-                data: { confirm: "本当に削除しますか？" },
-                class: "btn btn-sm btn-danger" %>
-        </td>
+        <th style="width: 50px;">ID</th>
+        <th>クイズ</th>
+        <th style="width: 150px;">作成日</th>
+        <th>リクエスト先</th>
+        <th style="width: 200px;">操作</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @quiz_questions.each do |quiz| %>
+        <tr>
+          <td><%= quiz.id %></td>
+          <td style="white-space: normal;"><%= simple_format(quiz.question) %></td>
+          <td><%= quiz.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= quiz.requested_user&.full_name || "未設定" %></td>
+          <td class="d-flex gap-1">
+            <%= link_to "詳細", quiz_question_path(quiz), class: "btn btn-sm btn-info" %>
+            <%= link_to "編集", edit_admin_quiz_question_path(quiz), class: "btn btn-sm btn-warning" %>
+            <%= button_to "削除", admin_quiz_question_path(quiz), method: :delete,
+                  data: { confirm: "本当に削除しますか？" },
+                  class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
+  <%= paginate @quiz_questions %>
 <% else %>
   <div class="alert alert-info">クイズはまだ登録されていません。</div>
 <% end %>
-
-<%= paginate @quiz_questions %>

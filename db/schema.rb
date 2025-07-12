@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_07_134155) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_12_121010) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_07_134155) do
     t.text "remarks"
     t.string "gender"
     t.boolean "admin"
+    t.string "japanese_level"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

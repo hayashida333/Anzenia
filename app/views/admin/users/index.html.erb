@@ -7,63 +7,33 @@
 
   <table class="table table-striped">
     <thead>
-      <tr>
-        <th>ID</th>
-        <th>名前</th>
-        <th>性別</th>
-        <th>メールアドレス</th>
-        <th>電話番号</th>
-        <th>リンク</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td style="width:80px;"><%= user.id %></td>
-          <td><%= user.last_name %> <%= user.first_name %></td>
-          <td><%= user.gender %></td>
-          <td><%= user.email %></td>
-          <td><%= user.tel_number %></td>
-          <td>
-            <%= link_to "詳細", admin_user_path(user), class: "btn btn-info me-1" %>
-            <%= button_to "削除", admin_user_path(user),
+  <tr>
+    <th>ID</th>
+    <th>名前</th>
+    <th>性別</th>
+    <th>メールアドレス</th>
+    <th>電話番号</th>
+    <th>日本語の理解</th>
+    <th>リンク</th>
+  </tr>
+</thead>
+<tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td style="width:80px;"><%= user.id %></td>
+      <td><%= user.last_name %> <%= user.first_name %></td>
+      <td><%= user.gender %></td>
+      <td><%= user.email %></td>
+      <td><%= user.tel_number %></td>
+      <td><%= user.japanese_level.presence || "未設定" %></td>
+      <td>
+        <%= link_to "詳細", admin_user_path(user), class: "btn btn-info me-1" %>
+        <%= button_to "削除", admin_user_path(user),
               method: :delete,
               data: { confirm: "本当に削除しますか？" },
               class: "btn btn-danger me-1" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h3>クイズ結果一覧（最新5件）</h3>
-<% if defined?(@quiz_results) && @quiz_results.present? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>問題</th>
-        <th>結果</th>
-        <th>日時</th>
-        <th>ユーザー名</th> 
-      </tr>
-    </thead>
-    <tbody>
-      <% @quiz_results.each_with_index do |result, index| %>
-        <tr class="<%= 'table-danger' if index == 0 %>">
-          <td><%= truncate(result.quiz_question.question, length: 30) %></td>
-          <td>
-            <% if result.correct %>
-              <span class="text-success">正解</span>
-            <% else %>
-              <span class="text-danger">不正解</span>
-            <% end %>
-          </td>
-          <td><%= result.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-          <td><%= result.user.last_name %> <%= result.user.first_name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>クイズ結果の表示情報がありません。</p>
-<% end %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
