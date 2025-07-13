@@ -52,7 +52,7 @@ end
   end
 
   def video_params
-    params.require(:video).permit(:title, :body, :youtube_url)
+    params.require(:video).permit(:title, :description, :youtube_url)
   end
 
   def extract_youtube_id(url)

@@ -1,9 +1,9 @@
 <h1><%= @video.title %></h1>
 
-<p>
-  <strong>説明:</strong><br>
-  <%= simple_format(@video.body) %>
-</p>
+<div class="mb-3">
+  <strong>説明:</strong>
+  <p><%= simple_format(@video.description) %></p>
+</div>
 
 <p>
   <strong>YouTube動画:</strong><br>
@@ -16,6 +16,6 @@
 </p>
 
 <div class="d-flex gap-2 mt-3">
-  <%= link_to "投稿一覧に戻る", "/admin/videos", class: "btn btn-secondary" %>
-  <%= button_to "投稿を削除", admin_video_path(@video), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<%= link_to "動画一覧に戻る", admin_videos_path, class: "btn btn-secondary" %>
+<%= button_to "投稿を削除", admin_video_path(@video), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 </div>
