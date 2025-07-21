@@ -1,35 +1,37 @@
+# config/routes.rb
 Rails.application.routes.draw do
+  root "home#index"
+
+  # 管理者用ログイン設定
+  devise_for :admin_users, path: 'admin', controllers: {
+    sessions: 'admin_users/sessions'
+  }
+
   namespace :admin do
-    get "quiz_results/index"
+    get 'dashboard', to: 'dashboard#index' # ログイン後に飛ぶページ
+
     resources :users
     resources :posts
     resources :videos
     resources :quiz_questions
+    resources :quiz_results, only: [:index]
   end
 
+  # 従業員用
   devise_for :users
-
-  root "posts#index"
 
   resources :posts
   resources :videos
-
-  # 一般ユーザー用（削除・作成・編集不可）
-  resources :quiz_questions, only: [ :index, :show ] do
+  resources :quiz_questions, only: [:index, :show] do
     post "answer", on: :member
   end
 
-  namespace :admin do
-    resources :quiz_results, only: [ :index ]
-  end
-
-
-  resources :users, only: [ :index, :show ]
+  resources :users, only: [:index, :show]
 
   # ヘルスチェック
   get "up", to: "rails/health#show", as: :rails_health_check
 
-  # PWA用ファイル
+  # PWA用
   get "service-worker", to: "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest", to: "rails/pwa#manifest", as: :pwa_manifest
 end
