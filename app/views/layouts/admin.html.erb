@@ -25,13 +25,21 @@
               <%= link_to "クイズ結果（Quiz）", admin_quiz_results_path, class: "list-group-item list-group-item-action bg-dark text-white border-0" %>
               <%= link_to "機能確認", posts_path, class: "list-group-item list-group-item-action bg-dark text-white border-0" %>
               <hr class="border-secondary">
-              <% if user_signed_in? %>
-                <div class="list-group-item bg-dark text-white border-0 disabled">
-                  ログイン中: <%= current_user.email %>
-                </div>
-                <%= button_to "ログアウト", destroy_user_session_path, method: :delete,
-                      class: "list-group-item list-group-item-action bg-dark text-white border-0 text-start w-100" %>
-              <% end %>
+              <% if admin_user_signed_in? %>
+              <div class="list-group-item bg-dark text-white border-0 disabled">
+                ログイン中（管理者）: <%= current_admin_user.email %>
+              </div>
+              <%= button_to "ログアウト", destroy_admin_user_session_path, method: :delete,
+                    class: "list-group-item list-group-item-action bg-dark text-white border-0 text-start w-100" %>
+
+            <% elsif user_signed_in? %>
+              <div class="list-group-item bg-dark text-white border-0 disabled">
+                ログイン中（従業員）: <%= current_user.email %>
+              </div>
+              <%= button_to "ログアウト", destroy_user_session_path, method: :delete,
+                    class: "list-group-item list-group-item-action bg-dark text-white border-0 text-start w-100" %>
+            <% end %>
+
             </div>
           </nav>
 

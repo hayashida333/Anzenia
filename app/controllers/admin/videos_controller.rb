@@ -1,5 +1,5 @@
 module Admin
-class VideosController < ApplicationController
+  class VideosController < Admin::ApplicationController
     before_action :set_video, only: [ :show, :edit, :update, :destroy ]
 
   def index

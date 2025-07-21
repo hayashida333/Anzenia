@@ -1,3 +1,5 @@
+module Admin
+  class ApplicationController < ::ApplicationController
 def after_sign_in_path_for(resource)
   case resource
   when AdminUser
@@ -7,4 +9,6 @@ def after_sign_in_path_for(resource)
   else
     root_path
   end
+end
+end
 end
