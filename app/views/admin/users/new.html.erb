@@ -31,6 +31,11 @@
   </div>
 
   <div class="my-4">
+    <%= f.label :japanese_level, "日本語の理解", class: "form-label" %><br />
+    <%= f.select :japanese_level, [["上級", "上級"], ["中級", "中級"], ["初級", "初級"], ["未設定", "未設定"]], {}, class: "form-select" %>
+  </div>
+
+  <div class="my-4">
     <%= f.label :password, "パスワード", class: "form-label" %>
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %>文字以上)</em>
