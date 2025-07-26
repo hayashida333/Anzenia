@@ -2,8 +2,9 @@ module Admin
   class QuizQuestionsController < ApplicationController
     before_action :set_quiz_question, only: %i[show edit update destroy answer]
     before_action :set_users, only: %i[new edit create update]
+
     def index
-          @quiz_questions = QuizQuestion.includes(:requested_user).order(created_at: :desc).page(params[:page]).per(10)
+      @quiz_questions = QuizQuestion.includes(:requested_user).order(created_at: :desc).page(params[:page]).per(10)
     end
 
     def show
@@ -13,7 +14,6 @@ module Admin
       selected = params[:selected_option].to_i
       correct = (selected == @quiz_question.correct)
 
-      # 結果を保存
       QuizResult.create!(
         user: current_user,
         quiz_question: @quiz_question,
@@ -31,7 +31,6 @@ module Admin
 
     def new
       @quiz_question = QuizQuestion.new
-      @users = User.all.order(:last_name, :first_name)
     end
 
     def create
@@ -44,19 +43,15 @@ module Admin
     end
 
     def edit
-      @quiz_question = QuizQuestion.find(params[:id])
-      @users = User.all.order(:last_name, :first_name)
     end
 
     def update
-  @quiz_question = QuizQuestion.find(params[:id])
-  Rails.logger.info("quiz_question_params: #{quiz_question_params.inspect}")
-  if @quiz_question.update(quiz_question_params)
-    redirect_to admin_quiz_questions_path, notice: "クイズを更新しました"
-  else
-    render :edit
-  end
-end
+      if @quiz_question.update(quiz_question_params)
+        redirect_to admin_quiz_questions_path, notice: "クイズを更新しました"
+      else
+        render :edit
+      end
+    end
 
     def destroy
       @quiz_question.destroy
@@ -73,16 +68,16 @@ end
       @quiz_question = QuizQuestion.find(params[:id])
     end
 
-   def quiz_question_params
-  params.require(:quiz_question).permit(
-    :question,
-    :option1,
-    :option2,
-    :option3,
-    :option4,
-    :correct,
-    :requested_user_id
-  )
-end
+    def quiz_question_params
+      params.require(:quiz_question).permit(
+        :question,
+        :option1,
+        :option2,
+        :option3,
+        :option4,
+        :correct,
+        :requested_user_id
+      )
+    end
   end
 end

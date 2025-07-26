@@ -6,11 +6,12 @@ module Admin
     def index
       @quiz_results = QuizResult.includes(:user, :quiz_question).order(created_at: :desc).page(params[:page]).per(10)
 
-      # ユーザーごとの最新のクイズ結果だけをマークしたい
+      # 各ユーザーにとって最も古い（最初の）クイズ結果の ID を特定
       @first_quiz_results_by_user = QuizResult
-  .order(:created_at)
-  .group_by(&:user_id)
-  .transform_values { |results| results.min_by(&:created_at).id }
+        .select('MIN(id) AS id, user_id') # 最初のIDを取得（created_atが早いもの）
+        .group(:user_id)
+        .pluck(:user_id, :id)
+        .to_h
     end
   end
 end
