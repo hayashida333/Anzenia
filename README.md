@@ -7,6 +7,7 @@
 動画として投稿することができます。
 また、クイズに挑戦してもらい理解度を確認することも可能です。
 
+https://www.youtube.com/watch?v=YK-kDZUdRrY
 
 ## 起動方法
 ```
@@ -17,6 +18,6 @@ rails db:migrate
 以下をブラウザで開くことができます
 ```
 bin/rails s　
-localhost:3000/admin/users （管理者用）
+localhost:3000 （管理者用）
 localhost:3000/posts（一般用）
 ```
