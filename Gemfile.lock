@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/rails/rubocop-rails-omakase
+  revision: 9a57de8073527d6f62c7ad3867e8c0da75644f99
+  specs:
+    rubocop-rails-omakase (1.1.0)
+      rubocop (>= 1.74)
+      rubocop-performance (>= 1.24)
+      rubocop-rails (>= 2.30)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -73,7 +82,7 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    ast (2.4.2)
+    ast (2.4.3)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
@@ -212,7 +221,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    language_server-protocol (3.17.0.3)
+    language_server-protocol (3.17.0.5)
+    lint_roller (1.1.0)
     logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -261,11 +271,12 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     os (1.1.4)
-    parallel (1.26.3)
-    parser (3.3.5.0)
+    parallel (1.27.0)
+    parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
     popper_js (2.11.8)
+    prism (1.4.0)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -313,7 +324,7 @@ GEM
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    regexp_parser (2.9.2)
+    regexp_parser (2.10.0)
     reline (0.5.10)
       io-console (~> 0.5)
     representable (3.2.0)
@@ -330,34 +341,31 @@ GEM
       netrc (~> 0.8)
     retriable (3.1.2)
     rexml (3.3.8)
-    rubocop (1.67.0)
+    rubocop (1.79.0)
       json (~> 2.3)
-      language_server-protocol (>= 3.17.0)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 2.4, < 3.0)
-      rubocop-ast (>= 1.32.2, < 2.0)
+      regexp_parser (>= 2.9.3, < 3.0)
+      rubocop-ast (>= 1.46.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.32.3)
-      parser (>= 3.3.1.0)
-    rubocop-minitest (0.36.0)
-      rubocop (>= 1.61, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-performance (1.22.1)
-      rubocop (>= 1.48.1, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.26.2)
+      tsort (>= 0.2.0)
+      unicode-display_width (>= 2.4.0, < 4.0)
+    rubocop-ast (1.46.0)
+      parser (>= 3.3.7.2)
+      prism (~> 1.4)
+    rubocop-performance (1.25.0)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rails (2.32.0)
       activesupport (>= 4.2.0)
+      lint_roller (~> 1.1)
       rack (>= 1.1)
-      rubocop (>= 1.52.0, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails-omakase (1.0.0)
-      rubocop
-      rubocop-minitest
-      rubocop-performance
-      rubocop-rails
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.2)
       ffi (~> 1.12)
@@ -408,13 +416,16 @@ GEM
     tilt (2.6.0)
     timeout (0.4.1)
     trailblazer-option (0.1.2)
+    tsort (0.2.0)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
-    unicode-display_width (2.6.0)
+    unicode-display_width (3.1.4)
+      unicode-emoji (~> 4.0, >= 4.0.4)
+    unicode-emoji (4.0.4)
     uri (1.0.2)
     useragent (0.16.10)
     warden (1.2.9)
@@ -467,7 +478,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.2.1, >= 7.2.1.1)
   rest-client (~> 2.1)
-  rubocop-rails-omakase
+  rubocop-rails-omakase!
   sassc-rails
   selenium-webdriver
   sprockets-rails

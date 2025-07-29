@@ -6,15 +6,13 @@ class VideosController < ApplicationController
     @quiz_questions = QuizQuestion.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @video = Video.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @video = Video.new(video_params)
@@ -22,7 +20,7 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       if @video.save
-        format.html { redirect_to @video, notice: "に作成されました。" }
+        format.html { redirect_to @video, notice: 'に作成されました。' }
         format.json { render :show, status: :created, location: @video }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -33,7 +31,7 @@ class VideosController < ApplicationController
 
   def update
     if @video.update(video_params)
-      redirect_to @video, notice: "動画が更新されました。"
+      redirect_to @video, notice: '動画が更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +39,7 @@ class VideosController < ApplicationController
 
   def destroy
     @video.destroy
-    redirect_to videos_path, notice: "動画が削除されました。"
+    redirect_to videos_path, notice: '動画が削除されました。'
   end
 
   private
@@ -55,15 +53,17 @@ class VideosController < ApplicationController
   end
 
   def extract_youtube_id(url)
-    uri = URI.parse(url) rescue nil
+    uri = begin
+      URI.parse(url)
+    rescue StandardError
+      nil
+    end
     return nil unless uri
 
-    if uri.host == "youtu.be"
+    if uri.host == 'youtu.be'
       uri.path[1..]
-    elsif uri.host&.include?("youtube.com")
-      Rack::Utils.parse_query(uri.query)["v"]
-    else
-      nil
+    elsif uri.host&.include?('youtube.com')
+      Rack::Utils.parse_query(uri.query)['v']
     end
   end
 end

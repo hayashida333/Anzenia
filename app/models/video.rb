@@ -5,15 +5,13 @@ class Video < ApplicationRecord
     uri = URI.parse(youtube_url)
 
     # 通常の YouTube URL (https://www.youtube.com/watch?v=xxxxx)
-    if uri.host&.include?("youtube.com") && uri.query
+    if uri.host&.include?('youtube.com') && uri.query
       params = CGI.parse(uri.query)
-      return params["v"]&.first
+      return params['v']&.first
     end
 
     # 短縮URL (https://youtu.be/xxxxx)
-    if uri.host&.include?("youtu.be")
-      return uri.path.delete_prefix("/")
-    end
+    return uri.path.delete_prefix('/') if uri.host&.include?('youtu.be')
 
     nil
   rescue URI::InvalidURIError

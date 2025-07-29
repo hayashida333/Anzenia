@@ -31,12 +31,12 @@
             </div>
           <% end %>
 
-          <h1 class="mb-4">情報共有システム</h1>
+          <h1 class="mb-4">Anzenia</h1>
 
           <% if user_signed_in? %>
             <p class="lead">こんにちは、<%= current_user.email %> さん</p>
           <% else %>
-            <p class="lead">ようこそ、情報共有システムへ。左のメニューからご利用ください。</p>
+            <p class="lead">ようこそ、Anzeniaへ。左のメニューからご利用ください。</p>
           <% end %>
 
           <!-- ページごとのビュー（yield） -->
@@ -48,7 +48,7 @@
 
   <footer class="footer mt-auto py-3 bg-white border-top text-center">
     <div class="container">
-      <span class="text-muted">情報共有システム</span>
+      <span class="text-muted">Anzenia</span>
     </div>
   </footer>
 </body>

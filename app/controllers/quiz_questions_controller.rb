@@ -1,25 +1,23 @@
 class QuizQuestionsController < ApplicationController
-  before_action :set_quiz_question, only: [:show, :answer]  # ここに :answer を追加
+  before_action :set_quiz_question, only: %i[show answer] # ここに :answer を追加
   before_action :authenticate_user!, only: [:answer]
 
   def index
     @quiz_questions = QuizQuestion.order(created_at: :desc).page(params[:page]).per(10)
   end
 
-  def new
-  end
+  def new; end
 
   def create
     @quiz_question = QuizQuestion.new(quiz_question_params)
     if @quiz_question.save
-      redirect_to admin_quiz_questions_path, notice: "クイズを作成しました"
+      redirect_to admin_quiz_questions_path, notice: 'クイズを作成しました'
     else
-        render :new
+      render :new
     end
-    end
-
-  def show
   end
+
+  def show; end
 
   def answer
     selected = params[:selected_option].to_i
@@ -33,7 +31,7 @@ class QuizQuestionsController < ApplicationController
     )
 
     if correct
-      flash[:notice] = "正解です！"
+      flash[:notice] = '正解です！'
     else
       flash[:alert] = "不正解です。正解は「#{@quiz_question.send("option#{@quiz_question.correct}")}」です。動画をもう一度確認して下さい。"
     end
@@ -43,7 +41,7 @@ class QuizQuestionsController < ApplicationController
 
   def destroy
     @quiz_question.destroy
-    redirect_to quiz_questions_path, notice: "クイズを削除しました"
+    redirect_to quiz_questions_path, notice: 'クイズを削除しました'
   end
 
   private

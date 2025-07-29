@@ -1,5 +1,5 @@
 class Admin::PostsController < ApplicationController
-    layout "admin"
+  layout 'admin'
   def index
     @posts = Post.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -15,7 +15,7 @@ class Admin::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to admin_posts_path, notice: "投稿を作成しました"
+      redirect_to admin_posts_path, notice: '投稿を作成しました'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to admin_posts_path, notice: "投稿を更新しました"
+      redirect_to admin_posts_path, notice: '投稿を更新しました'
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to admin_posts_path, notice: "投稿を削除しました"
+    redirect_to admin_posts_path, notice: '投稿を削除しました'
   end
 
   private

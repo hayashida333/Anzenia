@@ -2,9 +2,9 @@
 
 module Admin
   class UsersController < ApplicationController
-   def index
-  @users = User.order(created_at: :desc).page(params[:user_page]).per(10)
-end
+    def index
+      @users = User.order(created_at: :desc).page(params[:user_page]).per(10)
+    end
 
     def show
       @user = User.find(params[:id])
@@ -35,7 +35,7 @@ end
       end
 
       if @user.update(user_params)
-        redirect_to admin_user_path(@user), notice: "ユーザー情報を更新しました"
+        redirect_to admin_user_path(@user), notice: 'ユーザー情報を更新しました'
       else
         render :edit
       end
@@ -44,17 +44,17 @@ end
     def destroy
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to admin_users_path, notice: "ユーザーを削除しました"
+      redirect_to admin_users_path, notice: 'ユーザーを削除しました'
     end
 
     private
 
     def user_params
       params.require(:user).permit(
-      :email, :first_name, :last_name, :tel_number,
-      :gender, :japanese_level,
-      :password, :password_confirmation
-    )
+        :email, :first_name, :last_name, :tel_number,
+        :gender, :japanese_level,
+        :password, :password_confirmation
+      )
     end
   end
 end
