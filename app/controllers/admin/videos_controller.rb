@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class VideosController < Admin::ApplicationController
     before_action :set_video, only: %i[show edit update destroy]

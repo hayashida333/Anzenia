@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Video < ApplicationRecord
   def youtube_id
     return nil if youtube_url.blank?

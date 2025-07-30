@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class QuizQuestionsController < ApplicationController
     before_action :set_quiz_question, only: %i[show edit update destroy answer]

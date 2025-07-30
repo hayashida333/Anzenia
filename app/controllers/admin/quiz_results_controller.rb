@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/controllers/admin/quiz_results_controller.rb
 module Admin
   class QuizResultsController < ApplicationController

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuizQuestion < ApplicationRecord
   belongs_to :requested_user, class_name: 'User', optional: true
 
