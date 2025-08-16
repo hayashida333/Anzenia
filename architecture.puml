@@ -1,0 +1,15 @@
+@startuml
+actor User
+
+rectangle "ブラウザ" as Browser
+rectangle "Anzenia (Railsアプリ)" as Rails
+database "DB (SQLite / PostgreSQL)" as DB
+rectangle "GitHubリポジトリ" as GitHub
+
+User -> Browser : 操作
+Browser -> Rails : HTTPリクエスト
+Rails -> DB : データ読み書き
+
+Rails -[hidden]-> GitHub
+User -> GitHub : コードPush/Pull
+@enduml
