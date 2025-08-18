@@ -18,6 +18,10 @@
 
 ---
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> baace2d (raad.meの微調整)
 ## 🛠 使用技術
 
 | 分野           | 技術                                             |
@@ -39,8 +43,17 @@ rails db:migrate
 rails db:seed
 rails server
 
+<<<<<<< HEAD
 
 🔑 ポートフォリオ用「管理者」ログイン情報
 
 Email: portfolio@example.com
 Password: portfolio123
+=======
+🔑 ポートフォリオ用「管理者」ログイン情報
+
+Email: portfolio@example.com
+Password: portfolio123
+
+youtube:　https://www.youtube.com/watch?v=YK-kDZUdRrY
+>>>>>>> baace2d (raad.meの微調整)
