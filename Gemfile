@@ -20,7 +20,7 @@ gem 'bcrypt', '~> 3.1.7' # devise用
 gem 'google-api-client', '~> 0.53'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'mini_magick', '~> 4.11.0'
+gem 'mini_magick', '~> 5.3.1'
 gem 'rest-client', '~> 2.1'
 gem 'sassc-rails'
 
